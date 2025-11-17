@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Autos;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.drive.DriveSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
@@ -55,6 +56,10 @@ public class RobotContainer {
     // cancelling on release.
     Command driveCommand = new DriveCommand(driveSubsystem, driverController::getLeftX , driverController::getRightY);
     driveSubsystem.setDefaultCommand(driveCommand);
+
+    Command shooterCommand = new ShooterCommand(shooterSubsystem);
+    driverController.b().whileTrue(shooterCommand);
+    
   }
 
   
