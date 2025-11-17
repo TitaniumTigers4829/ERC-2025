@@ -10,6 +10,7 @@ import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.drive.DriveSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -22,16 +23,16 @@ import java.util.function.DoubleSupplier;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  private final CommandXboxController driverController = new CommandXboxController(0);
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
-  private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   DriveCommand driveCommand;
-
+  Joystick leftJoystick = new Joystick(0);
+  Joystick rightJoystick = new Joystick(0);
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
-
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -50,19 +51,14 @@ public class RobotContainer {
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     
-
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(new DriveCommand(m_driveSubsystem));
+    Command driveCommand = new DriveCommand(driveSubsystem, driverController::getLeftX , driverController::getRightY);
+    driveSubsystem.setDefaultCommand(driveCommand);
   }
 
-  private void configureDriverController() {
-    // Configure a simple default drive command using the available constructor
-    driveCommand = new DriveCommand(m_driveSubsystem);
-    m_driveSubsystem.setDefaultCommand(driveCommand);
-  }
-
-
+  
+  
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
@@ -70,26 +66,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_driveSubsystem);
+    return Autos.exampleAuto(driveSubsystem);
   }
   // Simple JoystickUtil helper to avoid unresolved reference to JoystickUtil
   // Provides minimal implementations used in this file.
-  private static class JoystickUtil {
-    public static double[] modifyAxisPolar(DoubleSupplier getX, DoubleSupplier getY, int deadband) {
-      double x = modifyAxis(getX, deadband);
-      double y = modifyAxis(getY, deadband);
-      // return {x, y} so callers that access [1] get the Y value and [0] get the X value
-      return new double[] {x, y};
-    }
-
-    public static double modifyAxis(DoubleSupplier supplier, int deadband) {
-      double value = supplier.getAsDouble();
-      // treat deadband as percentage (e.g., 3 -> 0.03)
-      double threshold = deadband / 100.0;
-      if (Math.abs(value) <= threshold) {
-        return 0.0;
-      }
-      return value;
-    }
-  }
+  
 }
