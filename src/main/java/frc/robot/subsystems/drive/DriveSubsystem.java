@@ -17,11 +17,10 @@ public class DriveSubsystem extends SubsystemBase {
   
   public PWMTalonFX driveMotor1;
   public PWMTalonFX driveMotor2;
-  @SuppressWarnings("removal")
   public DriveSubsystem () {
   
-    driveMotor1 = new PWMTalonFX(DriveConstants.DRIVE_MOTOR_1_ID);
-    driveMotor2 = new PWMTalonFX(DriveConstants.DRIVE_MOTOR_2_ID);
+    driveMotor1 = new PWMTalonFX(DriveConstants.DRIVE_MOTOR_LEFT_ID);
+    driveMotor2 = new PWMTalonFX(DriveConstants.DRIVE_MOTOR_LEFT_ID);
     driveMotor2.setInverted(true);
     tankDrive = new DifferentialDrive(driveMotor1, driveMotor2);
   }

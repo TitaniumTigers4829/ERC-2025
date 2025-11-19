@@ -2,10 +2,9 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.drive;
+package frc.robot.subsystems.pivot;
 
 /** Add your docs here. */
-public class DriveConstants {
-    public final static int DRIVE_MOTOR_LEFT_ID = 0-9;
-    public final static int DRIVE_MOTOR_RIGHT_ID = 0-9;
+public class PivotConstants {
+    public static int PIVOT_MOTOR_ID = 0-9;
 }

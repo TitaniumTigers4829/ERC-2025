@@ -14,7 +14,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   /** Creates a new ExampleSubsystem. */
   public ShooterSubsystem() {
-    shooterMotor = new PWMTalonFX(ShooterConstants.MOTOR_ID);
+    shooterMotor = new PWMTalonFX(ShooterConstants.SHOOTER_MOTOR_ID);
   }
 
   @Override

@@ -7,6 +7,8 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Autos;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.GroundIntakeCommand;
+import frc.robot.commands.GroundOutakeCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.drive.DriveSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
@@ -15,7 +17,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import java.util.function.DoubleSupplier;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -58,8 +59,14 @@ public class RobotContainer {
     driveSubsystem.setDefaultCommand(driveCommand);
 
     Command shooterCommand = new ShooterCommand(shooterSubsystem);
-    driverController.b().whileTrue(shooterCommand);
+    driverController.leftTrigger().whileTrue(shooterCommand);
     
+    Command groundIntakeCommand = new GroundIntakeCommand(intakeSubsystem);
+    driverController.y().whileTrue(groundIntakeCommand);
+
+    Command groundOutakeCommand = new GroundOutakeCommand(intakeSubsystem);
+    driverController.x().whileTrue(groundOutakeCommand);
+
   }
 
   

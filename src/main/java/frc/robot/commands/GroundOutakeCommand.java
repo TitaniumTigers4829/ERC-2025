@@ -9,10 +9,11 @@ import frc.robot.subsystems.intake.IntakeSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class GroundOutakeCommand extends Command {
-  /** Creates a new GroundOutakeCommand. */
-  IntakeSubsystem intakeSubsystem;
-  double outakeSpeed = -0.000000000067;
-  public GroundOutakeCommand() {
+  IntakeSubsystem subsystem;
+  double outakeSpeed = -0.67;
+  public GroundOutakeCommand(IntakeSubsystem subsystem) {
+    this.subsystem = subsystem;
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -23,7 +24,7 @@ public class GroundOutakeCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.intakeMotor.set(outakeSpeed);
+    subsystem.intakeMotor.set(outakeSpeed);
   }
 
   // Called once the command ends or is interrupted.

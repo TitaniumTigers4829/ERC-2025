@@ -5,16 +5,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.intake.IntakeSubsystem;
-
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class GroundIntakeCommand extends Command {
- public IntakeSubsystem subsystem;
- double intakeSpeed = 0.67;
-  public GroundIntakeCommand(IntakeSubsystem subsystem) {
-    this.subsystem = subsystem;
-    addRequirements(subsystem);
+public class GroundPivotCommand extends Command {
+  /** Creates a new GroundPivotCommand. */
+  public GroundPivotCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -24,9 +19,7 @@ public class GroundIntakeCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    subsystem.intakeMotor.set(intakeSpeed);
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
