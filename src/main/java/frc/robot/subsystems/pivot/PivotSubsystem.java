@@ -4,7 +4,9 @@
 
 package frc.robot.subsystems.pivot;
 
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonFX;
 import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -12,8 +14,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class PivotSubsystem extends SubsystemBase {
   /** Creates a new PivotSubsystem. */
   public PWMTalonFX pivotMotor;
+  Encoder encoder;
+  public SimpleMotorFeedforward feedforward;
   public PivotSubsystem() {
     pivotMotor = new PWMTalonFX(PivotConstants.PIVOT_MOTOR_ID);
+    encoder = new Encoder(0, 1);
+    feedforward = new SimpleMotorFeedforward(0, 0);
   }
   public void setPivotAngle(Angle angle) {
     

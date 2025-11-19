@@ -4,22 +4,44 @@
 
 package frc.robot;
 
+import frc.robot.commands.GroundIntakeCommand;
+import frc.robot.commands.GroundOutakeCommand;
 import frc.robot.subsystems.drive.DriveSubsystem;
+import frc.robot.subsystems.intake.IntakeSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public final class Autos {
   /** Example static factory for an autonomous command. */
-  public static Command exampleAuto(DriveSubsystem subsystem) {
+  public static Command exampleAuto(DriveSubsystem driveSubsystem) {
     return null;
   }
 
-  public static Command mainAuto(DriveSubsystem subsystem) {
-    // I don't feel like this is gonna work, but Abigail says it's fine - Andrea Fehringer, 11/17/2025 5:28 PM
-    subsystem.driveCommand(0.5, 0);
-    Timer.delay(5);
+  public static Command mainAuto(DriveSubsystem driveSubsystem, GroundIntakeCommand groundIntakeCommand, GroundOutakeCommand groundOutakeCommand) {
+    groundIntakeCommand.execute();
+    Timer.delay(1);
+    driveSubsystem.driveCommand(0, 0.5);
+    Timer.delay(1);
+    groundOutakeCommand.execute();
+    Timer.delay(1);
+    driveSubsystem.driveCommand(0, -0.5);
+    Timer.delay(1);
+    driveSubsystem.driveCommand(0.5, 0);
+    Timer.delay(1);
+
+    groundIntakeCommand.execute();
+    Timer.delay(1);
+    driveSubsystem.driveCommand(0, 0.5);
+    Timer.delay(1);
+    groundOutakeCommand.execute();
+    Timer.delay(1);
+    driveSubsystem.driveCommand(0,-0.5);
+    Timer.delay(1);
+    
+
+
     return null;
-  }
+  } 
 
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");
