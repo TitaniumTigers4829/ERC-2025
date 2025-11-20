@@ -4,12 +4,21 @@
 
 package frc.robot.commands;
 
+
+
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.pivot.PivotSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class GroundPivotCommand extends Command {
-  /** Creates a new GroundPivotCommand. */
-  public GroundPivotCommand() {
+public class PivotUpCommand extends Command {
+  /** Creates a new ShootPivotCommand. */
+  private PivotSubsystem subsystem;
+  public PivotUpCommand(PivotSubsystem subsystem) {
+    this.subsystem = subsystem;
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -19,7 +28,10 @@ public class GroundPivotCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    subsystem.setPivotAngle(30);
+    
+  }
 
   // Called once the command ends or is interrupted.
   @Override

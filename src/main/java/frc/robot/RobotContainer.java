@@ -9,9 +9,12 @@ import frc.robot.Autos;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.GroundIntakeCommand;
 import frc.robot.commands.GroundOutakeCommand;
+import frc.robot.commands.PivotDownCommand;
+import frc.robot.commands.PivotUpCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.drive.DriveSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.pivot.PivotSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,6 +33,7 @@ public class RobotContainer {
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  private final PivotSubsystem pivotSubsystem = new PivotSubsystem();
   DriveCommand driveCommand;
   Joystick leftJoystick = new Joystick(0);
   Joystick rightJoystick = new Joystick(0);
@@ -66,6 +70,12 @@ public class RobotContainer {
 
     Command groundOutakeCommand = new GroundOutakeCommand(intakeSubsystem);
     driverController.x().whileTrue(groundOutakeCommand);
+
+    Command pivotUpCommand = new PivotUpCommand(pivotSubsystem);
+    driverController.a().whileTrue(pivotUpCommand);
+
+    Command pivotDownCommand = new PivotDownCommand(pivotSubsystem);
+    driverController.b().whileTrue(pivotDownCommand);
 
   }
 

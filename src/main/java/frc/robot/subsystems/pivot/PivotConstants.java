@@ -4,7 +4,12 @@
 
 package frc.robot.subsystems.pivot;
 
+
+
 /** Add your docs here. */
 public class PivotConstants {
     public static int PIVOT_MOTOR_ID = 5;
+    public static double WHEEL_RADIUS = 1;
+    public static double GEAR_RATIO = 1;
+   
 }
