@@ -6,5 +6,5 @@ package frc.robot.subsystems.pivot;
 
 /** Add your docs here. */
 public class PivotConstants {
-    public static int PIVOT_MOTOR_ID = 0-9;
+    public static int PIVOT_MOTOR_ID = 5;
 }

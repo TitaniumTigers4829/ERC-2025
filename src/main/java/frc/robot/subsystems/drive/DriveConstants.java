@@ -6,6 +6,6 @@ package frc.robot.subsystems.drive;
 
 /** Add your docs here. */
 public class DriveConstants {
-    public final static int DRIVE_MOTOR_LEFT_ID = 0-9;
-    public final static int DRIVE_MOTOR_RIGHT_ID = 0-9;
+    public final static int DRIVE_MOTOR_LEFT_ID = 2;
+    public final static int DRIVE_MOTOR_RIGHT_ID = 1;
 }

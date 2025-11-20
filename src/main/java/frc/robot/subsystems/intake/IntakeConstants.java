@@ -6,5 +6,5 @@ package frc.robot.subsystems.intake;
 
 /** Add your docs here. */
 public class IntakeConstants {
-    public static int INTAKE_MOTOR_ID = 0-9;
+    public static int INTAKE_MOTOR_ID = 3;
 }

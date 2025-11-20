@@ -6,11 +6,9 @@ import frc.robot.subsystems.shooter.ShooterSubsystem;
 
 public class ShooterCommand extends Command {
     private ShooterSubsystem subsystem;
-    private PWMTalonFX motor;
     public double speed = 1;
     public ShooterCommand(ShooterSubsystem subsystem) {
         this.subsystem = subsystem;
-        this.motor = subsystem.shooterMotor;
         addRequirements(subsystem);
     }
 
@@ -19,12 +17,12 @@ public class ShooterCommand extends Command {
 
     @Override
     public void execute() {
-        motor.set(speed);
+        subsystem.shooterMotor.set(speed);
     }
 
     @Override
     public void end(boolean interrupted) {
-        motor.set(0);
+        subsystem.shooterMotor.set(0);
     }
 
     @Override
